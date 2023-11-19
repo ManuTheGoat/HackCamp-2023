@@ -1,8 +1,9 @@
 #from argon2 import PasswordHasher
 import json
+import uuid
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotAllowed
-from app.models import User, Entry, ListEntry
+from app.models import User, Entry, ListEntry, Conversation, Message
 
 def signup(request):
     if request.method != 'POST':
@@ -60,14 +61,20 @@ def edit(request):
     
     location: str = str(request.POST['location'])
     subject: str = str(request.POST['subject'])
+    user_id = uuid.UUID(request.post['uuid'])
 
-    #
+    entry = Entry.objects.get(id=User.objects.get(id=user_id).entry)
+    entry.location = location
+    entry.subject = subject
+    entry.save()
+
+    return HttpResponse(json.dumps({ 'success': True }), status=200, content_type='application/json')
 
 def list(request):
     if request.method != 'GET':
         return HttpResponseNotAllowed(['GET'])
-    
-    page_number = request.GET['page']
+
+    page_number = int(request.GET['page'])
 
     entries = []
 
@@ -82,16 +89,71 @@ def list(request):
             'location': entry.location
         })
 
-    return HttpResponse(json.dumps(entries))
+    return HttpResponse(json.dumps(entries), content_type='application/json')
 
-def chat(request):
+def get_conversations(request):
+    if request.method != 'GET':
+        return HttpResponseNotAllowed(['GET'])
+    
+    user_uuid = uuid.UUID(request.POST['uuid'])
+    user = User.objects.get(id=user_uuid)
+    conversations = user.conversations[len(user.conversations) - 10: len(user.conversations)]
+
+    conversation_names = []
+    for conversation in conversations:
+        index = 0
+        if conversation.users[0] == user_uuid:
+            index = 1
+        username = User.objects.get(id=conversation.users[index]).username
+        conversation_names.append(username)
+
+    return HttpResponse(json.dumps(conversation_names), content_type='application/json')
+
+# starts a conversation
+def study(request):
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
+
+    user_uuid = uuid.UUID(request.post['uuid'])
+    chosen_user_uuid = uuid.UUID(request.post['chosen_uuid'])
+
+    conversation = Conversation(users=[user_uuid, chosen_user_uuid])
+
+    user = User.objects.get(id=user_uuid)
+    chosen_user = User.objects.get(id=chosen_user_uuid)
+
+    user.conversations = user.conversations.append(conversation.id)
+    user.save()
+    chosen_user.conversations = chosen_user.conversations.append(conversation.id)
+    chosen_user.save()
+
+def chat(request): # sends a chat message
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    conversation_uuid = uuid.UUID(request.post['conversation_uuid'])
+    message = request.post['message']
+
+    conversation = Conversation.objects.get(id=conversation_uuid)
+    conversation.messages = conversation.messages.append(message)
+    conversation.save()
+
+def get_messages(request):
+    if request.method != 'GET':
+        return HttpResponseNotAllowed(['GET'])
     
-    #
+    conversation_uuid = uuid.UUID(request.POST['conversation_uuid'])
+    conversation = Conversation.objects.get(id=conversation_uuid)
 
-    pass
+    message_uuids = conversation.messages[len(conversation.messages) - 20: len(conversation.messages)]
 
-# chat
-
-#study button
+    messages = []
+    for message_uuid in message_uuids:
+        message = Message.objects.get(id=message_uuid)
+        author = User.objects.get(id=message.user)
+        messages.append({
+            'message': message.message,
+            'user': author.username
+        })
+    
+    return HttpResponse(json.dumps(messages), content_type='application/json')
