@@ -71,24 +71,27 @@ body {
 }
 
 .footer {
-    position: bottom;
-    color:white;
+    align-items: center;
+    position: absolute;
+    margin-top: 70px;
+    bottom: 15px;
+    left: 2px;
+    z-index: 10px;
+    color:navy;
     background-color: teal;
     text-align: center;
+    border-radius: 20px
 }
 .column {
     vertical-align: middle; 
     display: inline-block;
-    padding: 0 15px;    
+    padding: 0 15px;
 }
 
-.discord_button {
-    position: relative;
-    top: 15%; 
-    left: 0%;
+.discord_button img{
     transition: transform .7s ease-in-out;
   }
-
-.discord_button:hover{
-    transform:rotate(360);
+.discord_button:hover img {
+    transform: rotate(360deg); 
 }
+
