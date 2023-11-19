@@ -170,27 +170,3 @@ ul{
     font-size: 15px;
     transition: 0.3s;
 }
-
-.profile_photo{
-    background-color: teal;
-    color: navy;
-    display: block;
-    height: 30px;
-    width: 30px;
-    border-radius: 20px;
-    justify-content:flex-start;
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    line-height: 60px;
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-.profile_text{
-    align-items: flex-start;
-    text-align: center;
-    font-weight: bold;
-    line-height: 60px;
-    font-size: 15px;
-}
