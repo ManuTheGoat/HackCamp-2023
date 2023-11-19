@@ -69,3 +69,26 @@ body {
 .hello {
     text-align: center;
 }
+
+.footer {
+    position: bottom;
+    color:white;
+    background-color: teal;
+    text-align: center;
+}
+.column {
+    vertical-align: middle; 
+    display: inline-block;
+    padding: 0 15px;    
+}
+
+.discord_button {
+    position: relative;
+    top: 15%; 
+    left: 0%;
+    transition: transform .7s ease-in-out;
+  }
+
+.discord_button:hover{
+    transform:rotate(360);
+}
