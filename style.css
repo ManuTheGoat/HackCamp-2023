@@ -7,8 +7,8 @@ body {
 }
 
 .logo {
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
     display: block;
     margin: 0 auto;
 }
@@ -22,7 +22,7 @@ body {
     color: navy;
     display: block;
     height: 60px;
-    width: 400px;
+    width: 250px;
     border-radius: 20px;
     margin: 20px auto;
     text-decoration: none;
@@ -30,6 +30,20 @@ body {
     font-weight: bold;
     line-height: 60px;
     font-size: 20px;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #2c6185;
+    color: white;
+    .button_icon {
+        filter: brightness(0) invert(1);
+        transition: 0.3s;
+    }
+    .button_icon2 {
+        filter: brightness(0) invert(1);
+        transition: 0.3s;
+    }
 }
 
 .button_icon {
@@ -46,4 +60,12 @@ body {
     position: relative;
     top: 15%; 
     left: 0%;
+}
+
+.philosophy {
+    text-align: center;
+}
+
+.hello {
+    text-align: center;
 }
