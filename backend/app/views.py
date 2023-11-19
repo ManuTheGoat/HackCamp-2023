@@ -117,25 +117,28 @@ def study(request):
     user_uuid = uuid.UUID(request.post['uuid'])
     chosen_user_uuid = uuid.UUID(request.post['chosen_uuid'])
 
-    conversation = Conversation(users=[user_uuid, chosen_user_uuid])
+    conversation = Conversation(users=[str(user_uuid), str(chosen_user_uuid)])
 
     user = User.objects.get(id=user_uuid)
     chosen_user = User.objects.get(id=chosen_user_uuid)
 
-    user.conversations = user.conversations.append(conversation.id)
+    user.conversations = user.conversations + [str(conversation.id)]
     user.save()
-    chosen_user.conversations = chosen_user.conversations.append(conversation.id)
+    chosen_user.conversations = chosen_user.conversations + [str(conversation.id)]
     chosen_user.save()
 
 def chat(request): # sends a chat message
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
 
+    user_uuid = uuid.UUID(request.post['uuid'])
     conversation_uuid = uuid.UUID(request.post['conversation_uuid'])
     message = request.post['message']
 
+    message_object = Message(message=message, user=user_uuid, conversation=conversation_uuid)
+
     conversation = Conversation.objects.get(id=conversation_uuid)
-    conversation.messages = conversation.messages.append(message)
+    conversation.messages = conversation.messages + [(str(message_object.id))]
     conversation.save()
 
 def get_messages(request):
@@ -155,5 +158,5 @@ def get_messages(request):
             'message': message.message,
             'user': author.username
         })
-    
+
     return HttpResponse(json.dumps(messages), content_type='application/json')
