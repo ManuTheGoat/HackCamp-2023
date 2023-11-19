@@ -79,16 +79,14 @@ body {
 .column {
     vertical-align: middle; 
     display: inline-block;
-    padding: 0 15px;    
+    padding: 0 15px;
+    transition: transform .7s ease-in-out;   
 }
 
 .discord_button {
-    position: relative;
-    top: 15%; 
-    left: 0%;
     transition: transform .7s ease-in-out;
   }
-
-.discord_button:hover{
-    transform:rotate(360);
+.discord_button a:hover {
+    transform: rotate(360deg);
 }
+
