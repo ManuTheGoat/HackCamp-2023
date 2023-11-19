@@ -11,6 +11,11 @@ body {
     width: 200px;
     display: block;
     margin: 0 auto;
+    transition: all .2s;
+}
+
+.logo:hover {
+    transform:scale(1.1);
 }
 
 .title {
