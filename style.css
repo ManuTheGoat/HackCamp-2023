@@ -1,0 +1,49 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    background: lightgreen;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+}
+
+.button {
+    background-color: teal;
+    color: navy;
+    display: block;
+    height: 60px;
+    width: 400px;
+    border-radius: 20px;
+    margin: 20px auto;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 20px;
+}
+
+.button_icon {
+    width: 30px; 
+    height: 30px;
+    position: relative;
+    top: 15%; 
+    left: 0%; 
+  }
+
+.button_icon2 {
+    width: 30px; 
+    height: 30px;
+    position: relative;
+    top: 15%; 
+    left: 0%;
+}
