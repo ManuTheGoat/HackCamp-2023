@@ -69,3 +69,27 @@ body {
 .hello {
     text-align: center;
 }
+
+.footer {
+    position: bottom;
+    color:white;
+    background-color: teal;
+    text-align: center;
+}
+.column {
+    vertical-align: middle; 
+    display: inline-block;
+    padding: 0 15px;    
+}
+
+.discord_button {
+    border: none;
+    color: white;
+    padding: 0 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position:relative;
+    top: 15%;
+    bottom: 5%;
+  }
