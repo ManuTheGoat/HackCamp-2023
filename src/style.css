@@ -38,6 +38,34 @@ body {
     transition: 0.3s;
 }
 
+.buttonnoncenter {
+    background-color: teal;
+    color: navy;
+    display: block;
+    height: 60px;
+    width: 250px;
+    text-align: center;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.buttonnoncenter:hover {
+    background: #2c6185;
+    color: white;
+    .button_icon {
+        filter: brightness(0) invert(1);
+        transition: 0.3s;
+    }
+    .button_icon2 {
+        filter: brightness(0) invert(1);
+        transition: 0.3s;
+    }
+}
+
 .button:hover {
     background: #2c6185;
     color: white;
@@ -57,6 +85,7 @@ body {
     position: relative;
     top: 15%; 
     left: 0%; 
+    transition: 0.3s;
   }
 
 .button_icon2 {
@@ -65,38 +94,30 @@ body {
     position: relative;
     top: 15%; 
     left: 0%;
+   transition: 0.3s;
 }
 
 .philosophy {
     text-align: center;
 }
 
-.hello {
+.loginformation {
     text-align: center;
 }
 
-.footer {
-    align-items: center;
-    position: absolute;
-    margin-top: 70px;
-    bottom: 15px;
-    left: 2px;
-    z-index: 10px;
-    color:navy;
-    background-color: teal;
+.profilepicture {
+    border-radius: 90%;
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    display: block;
+    margin: 0% auto;
+}
+
+.greetings {
     text-align: center;
-    border-radius: 20px
-}
-.column {
-    vertical-align: middle; 
-    display: inline-block;
-    padding: 0 15px;
 }
 
-.discord_button img{
-    transition: transform .7s ease-in-out;
-  }
-.discord_button:hover img {
-    transform: rotate(360deg); 
+.checkboxes {
+    text-align: center;
 }
-
