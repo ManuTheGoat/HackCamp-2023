@@ -70,7 +70,7 @@ def edit(request):
 
     return HttpResponse(json.dumps({ 'success': True }), status=200, content_type='application/json')
 
-def list(request):
+def list_entries(request):
     if request.method != 'GET':
         return HttpResponseNotAllowed(['GET'])
 
