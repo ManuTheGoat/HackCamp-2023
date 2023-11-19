@@ -83,13 +83,12 @@ body {
 }
 
 .discord_button {
-    border: none;
-    color: white;
-    padding: 0 1px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    position:relative;
-    top: 15%;
-    bottom: 5%;
+    position: relative;
+    top: 15%; 
+    left: 0%;
+    transition: transform .7s ease-in-out;
   }
+
+.discord_button:hover{
+    transform:rotate(360);
+}
