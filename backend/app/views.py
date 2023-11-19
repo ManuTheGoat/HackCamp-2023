@@ -1,10 +1,8 @@
-from argon2 import PasswordHasher
+#from argon2 import PasswordHasher
 import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotAllowed
-
-def test(request):
-    return HttpResponse("Hello World")
+from app.models import User, Entry
 
 def signup(request):
     if request.method != 'POST':
@@ -30,6 +28,8 @@ def signup(request):
 
     password_hash = PasswordHasher().hash(password)
 
+    pass
+
 def login(request):
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
@@ -42,4 +42,23 @@ def login(request):
             'error': 'invalid username'
         }), status=401, content_type='application/json')
     
-    #
+    pass
+
+def submit(request):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    location: str = str(request.POST['location'])
+    subject: str = str(request.POST['subject'])
+
+    entry = Entry(location=location, subject=subject)
+    entry.save()
+
+def edit(request):
+    if request.method != 'POST':
+        return HttpResponseNotAllowed(['POST'])
+    
+    location: str = str(request.POST['location'])
+    subject: str = str(request.POST['subject'])
+
+    pass
