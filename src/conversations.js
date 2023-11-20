@@ -4,7 +4,7 @@ document.getElementById('send-message').addEventListener('click', function() {
     }
     const element = document.getElementById('message-container');
     let p1 = document.createElement('p');
-    p1.innerText = 'From You:';
+    p1.innerHTML = 'To <strong>Julian07</strong>:';
     element.appendChild(p1);
     let p2 = document.createElement('p');
     p2.innerText = document.getElementById('mes').value;
