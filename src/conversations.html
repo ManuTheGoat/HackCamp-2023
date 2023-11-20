@@ -9,19 +9,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <img class="profilepicture" width="300px" height="300px" src="https://media.discordapp.net/attachments/1042563702802624563/1175881546444579027/image.png?ex=656cd807&is=655a6307&hm=ab4fc5ecd1aca706643546f001d78fceb068be96bed616d2e5027e3f822ecc38&=&width=526&height=531">
-    <div class="greetings">
+    <div class="greetings" id="message-container">
         <p>Down here will appear the messages with the most recent person you'd like to study with!</p>
+        <br><br>
+
+        <p>From <strong>Julian07</strong>:</p>
+        <p>hello! lets go study at UBC Library</p>
+        <br>
     </div>
     <div class="messages">
         <label for="message">Enter Message Here:</label>
         <input type="text" id="mes" name="mes"><br><br>
     </div>
-    <a class="button" href="">
+    <button id="send-message" class="button">
         <img class="button_icon" width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/512/54/54382.png">
         <span class="button_text">Send</span>
-    </a>
+    </button>
     <a class="button" href="home.html">
         <img class="button_icon" width="30px" height="30px" src="https://cdn-icons-png.flaticon.com/512/0/340.png">
         <span class="button_text">Return</span>
     </a>
+    <script src="conversations.js"></script>
 </html>
