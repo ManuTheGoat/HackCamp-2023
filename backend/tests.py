@@ -24,3 +24,10 @@ list_entry2.save()
 
 conversation = Conversation(users=[str(user1.id), str(user2.id)])
 conversation.save()
+
+message1 = Message(message="Hello!", user=user1.id, conversation=conversation.id)
+message1.save()
+
+conversation.messages = conversation.messages + [str(message1.id)]
+conversation.save()
+
