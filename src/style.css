@@ -172,3 +172,7 @@ ul{
     font-size: 15px;
     transition: 0.3s;
 }
+
+.messages {
+    text-align: center;
+}
