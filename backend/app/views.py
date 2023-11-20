@@ -94,8 +94,8 @@ def list_entries(request):
 def get_conversations(request):
     if request.method != 'GET':
         return HttpResponseNotAllowed(['GET'])
-    
-    user_uuid = uuid.UUID(request.POST['uuid'])
+
+    user_uuid = uuid.UUID(request.GET['uuid'])
     user = User.objects.get(id=user_uuid)
     conversations = user.conversations[len(user.conversations) - 10: len(user.conversations)]
 
@@ -114,8 +114,8 @@ def study(request):
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
 
-    user_uuid = uuid.UUID(request.post['uuid'])
-    chosen_user_uuid = uuid.UUID(request.post['chosen_uuid'])
+    user_uuid = uuid.UUID(request.POST['uuid'])
+    chosen_user_uuid = uuid.UUID(request.POST['chosen_uuid'])
 
     conversation = Conversation(users=[str(user_uuid), str(chosen_user_uuid)])
 
@@ -127,13 +127,15 @@ def study(request):
     chosen_user.conversations = chosen_user.conversations + [str(conversation.id)]
     chosen_user.save()
 
+    return HttpResponse(json.dumps({ 'success': True }), status=200, content_type='application/json')
+
 def chat(request): # sends a chat message
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
 
-    user_uuid = uuid.UUID(request.post['uuid'])
-    conversation_uuid = uuid.UUID(request.post['conversation_uuid'])
-    message = request.post['message']
+    user_uuid = uuid.UUID(request.POST['uuid'])
+    conversation_uuid = uuid.UUID(request.POST['conversation_uuid'])
+    message = request.POST['message']
 
     message_object = Message(message=message, user=user_uuid, conversation=conversation_uuid)
 
@@ -141,11 +143,13 @@ def chat(request): # sends a chat message
     conversation.messages = conversation.messages + [(str(message_object.id))]
     conversation.save()
 
+    return HttpResponse(json.dumps({ 'success': True }), status=200, content_type='application/json')
+
 def get_messages(request):
     if request.method != 'GET':
         return HttpResponseNotAllowed(['GET'])
-    
-    conversation_uuid = uuid.UUID(request.POST['conversation_uuid'])
+
+    conversation_uuid = uuid.UUID(request.GET['conversation_uuid'])
     conversation = Conversation.objects.get(id=conversation_uuid)
 
     message_uuids = conversation.messages[len(conversation.messages) - 20: len(conversation.messages)]
