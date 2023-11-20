@@ -89,7 +89,10 @@ def list_entries(request):
             'location': entry.location
         })
 
-    return HttpResponse(json.dumps(entries), content_type='application/json')
+    response = HttpResponse(json.dumps(entries), content_type='application/json')
+    response['Access-Control-Allow-Origin'] = '*'
+
+    return response
 
 def get_conversations(request):
     if request.method != 'GET':
