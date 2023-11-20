@@ -140,11 +140,13 @@ body {
     padding: 0 15px;
 }
 
-.discord_button img{
+.nwplus_button img{
     transition: transform .7s ease-in-out;
+    filter: brightness(0)
   }
-.discord_button:hover img {
+.nwplus_button:hover img {
     transform: rotate(360deg);
+    filter: brightness(0)
 }
 
 .location {
