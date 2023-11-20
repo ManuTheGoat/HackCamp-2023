@@ -140,13 +140,35 @@ body {
     padding: 0 15px;
 }
 
-.discord_button img{
+.nwplus_button img{
     transition: transform .7s ease-in-out;
+    filter: brightness(0)
   }
-.discord_button:hover img {
+.nwplus_button:hover img {
     transform: rotate(360deg);
+    filter: brightness(0)
 }
 
 .location {
     text-align: center;
+}
+
+ul{
+    padding-inline-start: 0px;
+}
+.list_group_item {
+    background-color: white;
+    color: black;
+    display: block;
+    height: 60px;
+    width: 250px;
+    border-radius: 20px;
+    position:relative;
+    margin: 20px auto;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    line-height: 60px;
+    font-size: 15px;
+    transition: 0.3s;
 }
